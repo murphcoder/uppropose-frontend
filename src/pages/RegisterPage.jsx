@@ -37,6 +37,7 @@ const RegisterPage = () => {
 
       if (token) {
         localStorage.setItem("jwt", token); // Store the JWT token in localStorage
+        localStorage.setItem('userData', JSON.stringify(response.data.user));
         navigate("/"); // Redirect to the dashboard after successful registration
       } else {
         setError("Registration succeeded, but no token received.");

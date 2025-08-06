@@ -28,6 +28,7 @@ const LoginPage = () => {
       if (token) {
         // Store the JWT token in localStorage for use in subsequent requests
         localStorage.setItem('jwt', token);
+        localStorage.setItem('userData', JSON.stringify(response.data.user));
         navigate('/'); // Redirect to the dashboard or another protected page
       } else {
         setError('Login failed. Please check your credentials.');

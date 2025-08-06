@@ -17,6 +17,7 @@ const GoogleOAuthCallback = () => {
 
           if (token) {
             localStorage.setItem("jwt", token);
+            localStorage.setItem('userData', JSON.stringify(response.data.user));
             navigate("/"); // Redirect to dashboard after successful login
           } else {
             console.error("Authentication failed, no token received.");
