@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Onboard = () => {
-  const [workExperience, setWorkExperience] = useState("");  // State to hold work experience text
+  const [userData, setUserData] = useState(localStorage.getItem('userData'));
+  const [workExperience, setWorkExperience] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [error, setError] = useState("");  // State to hold error message
   const [success, setSuccess] = useState("");  // State to hold success message
   const navigate = useNavigate();  // Use navigate for routing after successful submission
@@ -12,8 +15,13 @@ const Onboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation: Ensure work experience is not empty
-    if (!workExperience.trim()) {
+    if (!firstName.trim() && userData.first_name === null) {
+      setError("First name cannot be empty.");
+      return;
+    } else if (!lastName.trim() && userData.last_name === null) {
+      setError("Last name cannot be empty.");
+      return;
+    } else if (!workExperience.trim()) {
       setError("Work experience cannot be empty.");
       return;
     }
@@ -23,7 +31,11 @@ const Onboard = () => {
       const response = await axios.put(
         `${import.meta.env.VITE_API_BASE_URL}/api/users/update`,
         {
-          user: {work_experience: workExperience},
+          user: {
+            first_name: firstName, 
+            last_name: lastName,
+            work_experience: workExperience, 
+          },
         },
         {
           headers: {
@@ -46,25 +58,53 @@ const Onboard = () => {
   };
 
   return (
-    <div className="onboard-container">
-      <h2>Onboard: Enter Your Work Experience</h2>
-
+    <div>
+      <h3>Onboard</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Work Experience</label>
+
+          {userData.first_name == null ? (
+            <div>
+              <label>First Name</label><br />
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              /><br />
+            </div>
+          ) : (null)}
+
+          {userData.last_name == null ? (
+            <div>
+              <label>Last Name</label><br />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              /><br />
+            </div>
+          ) : (null)}
+
+          <label>
+            Please write a brief description of your work experience below.
+            This will be used by the AI to construct proposals specific to you and your skills.
+          </label><br />
           <textarea
-            rows="6"
+            rows="10"
+            columns="10"
             value={workExperience}
             onChange={(e) => setWorkExperience(e.target.value)}
             placeholder="Describe your work experience..."
             required
-          />
+          /><br />
+
+          {error && <p className="error">{error}</p>}
+          {success && <p className="success">{success}</p>}
+
+          <button type="submit">Save Work Experience</button>
         </div>
-
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
-
-        <button type="submit">Save Work Experience</button>
       </form>
     </div>
   );

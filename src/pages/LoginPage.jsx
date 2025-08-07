@@ -60,35 +60,34 @@ const LoginPage = () => {
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <div className="form-group">
-          <label>Email</label>
+        <div>
           <input
             type="email"
+            placeholder='Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div className="form-group">
-          <label>Password</label>
+        <div>
           <input
             type="password"
+            placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
+        </div><br />
         {error && <p className="error">{error}</p>}
         <button type="submit">Login</button>
       </form>
 
       <hr />
 
-      {/* Google Login Button */}
       <button onClick={handleGoogleOAuth}>Login with Google</button>
 
       <p>
-        Don't have an account? 
+        Don't have an account?<br /><br />
         <span className="link" onClick={goToRegistration}>Sign up here</span>
       </p>
     </div>

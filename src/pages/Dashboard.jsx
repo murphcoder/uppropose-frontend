@@ -81,18 +81,19 @@ const Dashboard = () => {
               /><br />
               <label>Job Description</label><br />
               <textarea
-                rows="6"
+                rows="10"
+                columns="10"
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
                 placeholder="Paste Your Job Description Here"
                 required
               /><br />
+
+              {error && <p className="error">{error}</p>}
+              {success && <p className="success">{success}</p>}
+
+              <button type="submit">Generate Proposal</button>
             </div>
-
-            {error && <p className="error">{error}</p>}
-            {success && <p className="success">{success}</p>}
-
-            <button type="submit">Generate Proposal</button>
           </form>
           <h3>Your Proposals</h3>
           <ProposalList />

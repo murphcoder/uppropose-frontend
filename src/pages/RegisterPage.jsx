@@ -20,11 +20,13 @@ const RegisterPage = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/users/sign_up`,  // Send to backend for registration
+        `${import.meta.env.VITE_API_BASE_URL}/api/users`,  // Send to backend for registration
         {
-          email,
-          password,
-          password_confirmation: confirmation,
+          user: {
+            email,
+            password,
+            password_confirmation: confirmation
+          }
         },
         {
           headers: {
@@ -38,7 +40,7 @@ const RegisterPage = () => {
       if (token) {
         localStorage.setItem("jwt", token); // Store the JWT token in localStorage
         localStorage.setItem('userData', JSON.stringify(response.data.user));
-        navigate("/"); // Redirect to the dashboard after successful registration
+        navigate("/onboard"); // Redirect to the dashboard after successful registration
       } else {
         setError("Registration succeeded, but no token received.");
       }
@@ -61,7 +63,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Register</h2>
 
       <form onSubmit={handleRegister}>
@@ -87,7 +89,7 @@ const RegisterPage = () => {
           value={confirmation}
           onChange={(e) => setConfirmation(e.target.value)}
           required
-        /><br />
+        /><br /><br />
 
         {error && <p style={{ color: "red" }}>{error}</p>}
 

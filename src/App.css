@@ -1,42 +1,144 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General Body */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #333;
+}
+
+/* Container for the form */
+.login-container, .register-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Title */
+h2 {
+  font-size: 1.5rem;
+  color: #4a4a4a;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+h3 {
+  text-align: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  align-self: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Form Inputs */
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
-.card {
-  padding: 2em;
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.read-the-docs {
-  color: #888;
+button:hover {
+  background-color: #45a049;
 }
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Error message */
+.error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Link for registration */
+p {
+  text-align: center;
+  font-size: 1rem;
+}
+
+p .link {
+  color: #3498db;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+p .link:hover {
+  color: #2980b9;
+}
+
+/* Horizontal line */
+hr {
+  margin: 20px 0;
+  border: 1px solid #ddd;
+}
+
+/* Google Login Button */
+button.google-btn {
+  background-color: #4285F4;
+  border: none;
+  color: white;
+  margin-top: 10px;
+}
+
+button.google-btn:hover {
+  background-color: #357ae8;
+}
+
+.form-group {
+  display: grid;
+  margin: 0 10%;
+  justify-items: center;
+}
+
+.form-group div {
+  display: grid;
+  justify-items: center;
+}
+
+.form-group textarea {
+  width: 100%
+}
+
+.form-group input {
+  width: 100%
+}
+
+.form-group div {
+  width: 100%
+}
+
+.form-group div textarea {
+  width: 100%
+}
+
+.form-group div input {
+  width: 100%
+}
+
