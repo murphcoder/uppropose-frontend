@@ -18,12 +18,17 @@ const GoogleOAuthCallback = () => {
           const { token, user, expirationDate, proposalCount } = response.data;
 
           if (token && user) {
-            // Update global auth state
+            // Update context state - the useEffect hooks in AuthContext
+            // will automatically sync to localStorage with the correct keys
             setToken(token);
             setUser(user);
             setExpirationDate(new Date(expirationDate));
             setProposalCount(proposalCount);
-            navigate("/"); // Redirect to dashboard
+
+            // Small delay to ensure state updates complete before navigation
+            setTimeout(() => {
+              navigate("/");
+            }, 0);
           } else {
             console.error("Authentication failed, no token or user data received.");
           }
@@ -34,7 +39,7 @@ const GoogleOAuthCallback = () => {
     } else {
       console.error("No authorization code found in the URL.");
     }
-  }, [navigate, setToken, setUser]);
+  }, [navigate, setToken, setUser, setExpirationDate, setProposalCount]);
 
   return <div>Loading...</div>;
 };
