@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,6 @@ const ProposalList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch proposals from the API when the component mounts
     axios
       .get(`${import.meta.env.VITE_API_BASE_URL}/api/proposals`,
         {
@@ -19,7 +18,7 @@ const ProposalList = () => {
         }) // Replace with your API endpoint
       .then((response) => {
         // Set the proposals data to state
-        setProposals(response.data); 
+        setProposals(response.data);
         setLoading(false); // Data loaded, stop loading
       })
       .catch((err) => {

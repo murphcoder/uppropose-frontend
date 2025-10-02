@@ -38,10 +38,8 @@ const Proposal = () => {
     return <div>{error}</div>;
   }
 
-  console.log(proposal);
-
   return (
-    <div>
+    <div className="proposal">
       <h2>Proposal Details</h2>
       {proposal ? (
         <div>

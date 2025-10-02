@@ -93,12 +93,12 @@ const RegisterPage = () => {
 
         {error && <p style={{ color: "red" }}>{error}</p>}
 
-        <button type="submit">Register</button>
+        <button className="local" type="submit">Register</button>
       </form>
 
       <hr />
 
-      <button onClick={handleGoogleOAuth}>Register with Google</button>
+      <button className='google-sign-in-button' onClick={handleGoogleOAuth}>Register with Google</button>
     </div>
   );
 };

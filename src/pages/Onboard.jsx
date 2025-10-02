@@ -1,24 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '/src/AuthContext';
 
 const Onboard = () => {
-  const [userData, setUserData] = useState(localStorage.getItem('userData'));
   const [workExperience, setWorkExperience] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [error, setError] = useState("");  // State to hold error message
-  const [success, setSuccess] = useState("");  // State to hold success message
-  const navigate = useNavigate();  // Use navigate for routing after successful submission
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
+  const { user, setUser, setExpirationDate, setProposals } = useContext(AuthContext);
 
   // Handle the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!firstName.trim() && userData.first_name === null) {
+    if (!firstName.trim() && user.first_name === null) {
       setError("First name cannot be empty.");
       return;
-    } else if (!lastName.trim() && userData.last_name === null) {
+    } else if (!lastName.trim() && user.last_name === null) {
       setError("Last name cannot be empty.");
       return;
     } else if (!workExperience.trim()) {
@@ -29,7 +30,7 @@ const Onboard = () => {
     try {
       // Send the work experience to the backend
       const response = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/users/update`,
+        `${import.meta.env.VITE_API_BASE_URL}/api/users/update_current_user`,
         {
           user: {
             first_name: firstName, 
@@ -46,7 +47,9 @@ const Onboard = () => {
       );
 
       if (response.status === 200) {
-        localStorage.setItem('userData', JSON.stringify(response.data.user));
+        setUser(user);
+        setExpirationDate(new Date(expirationDate));
+        setProposals(proposals);
         setSuccess("Work experience saved successfully!");
         // Optionally, redirect to another page (e.g., dashboard) after success
         navigate("/");
@@ -60,10 +63,10 @@ const Onboard = () => {
   return (
     <div>
       <h3>Onboard</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="onboard-form">
         <div className="form-group">
 
-          {userData.first_name == null ? (
+          {user.first_name == null ? (
             <div>
               <label>First Name</label><br />
               <input
@@ -75,7 +78,7 @@ const Onboard = () => {
             </div>
           ) : (null)}
 
-          {userData.last_name == null ? (
+          {user.last_name == null ? (
             <div>
               <label>Last Name</label><br />
               <input
