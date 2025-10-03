@@ -90,7 +90,7 @@ const Account = () => {
   }, []);  // Effect will re-run if the `id` changes
 
   return (
-    <div>
+    <div className="account-container">
       <h3>Account Details</h3>
       <form onSubmit={handleSubmit} className="account-form">
         <div className="form-group">

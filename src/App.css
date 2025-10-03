@@ -14,7 +14,7 @@ body {
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  width: 100%;
+  width: 70%;
   max-width: 400px;
 }
 
@@ -152,9 +152,14 @@ button.google-btn:hover {
   background-color: #357ae8;
 }
 
+.account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .form-group {
   display: grid;
-  margin: 0 10%;
   justify-items: center;
 }
 
@@ -197,7 +202,7 @@ div.app-container {
 
 div.app-container div.navbar-container {
   align-content: center;
-  width: 500px;
+  width: 75%;
 }
 
 .navbar {
@@ -227,7 +232,7 @@ div.app-container div.navbar-container {
 }
 
 .navbar div.link-container.logged-in {
-  width: 500px;
+  width: 100%;
 }
 
 .navbar div a {
@@ -259,6 +264,10 @@ div.dashboard-container {
   display: flex;
 }
 
+div.dashboard-container div {
+  padding: 0% 5%;
+}
+
 @media (min-width: 750px) {
   div.dashboard-container {
     flex-direction: row;
@@ -278,11 +287,11 @@ div.proposal {
 }
 
 div.proposal div {
-  width: 60%;
+  width: 80%;
 }
 
 form.account-form {
-  width: 500px;
+  width: 90%;
 }
 
 .form-columns input {
@@ -312,8 +321,19 @@ form.account-form {
 }
 
 .navbar div.status-bar {
-  flex-direction: row;
   justify-content: space-between;
+}
+
+@media (min-width: 500px) {
+  .navbar div.status-bar {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar div.status-bar {
+    flex-direction: column;
+  }
 }
 
 .form-group .form-columns div {
