@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import api from './api';
 import { AuthContext } from '/src/AuthContext';
 
 const LoginPage = () => {
@@ -14,7 +14,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
+      const response = await api.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/users/sign_in`,
         { email, password },
         {

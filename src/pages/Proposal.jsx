@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "./api/";
 
 const Proposal = () => {
   const { id } = useParams();
@@ -10,7 +10,7 @@ const Proposal = () => {
 
   useEffect(() => {
     // Fetch proposal details by ID
-    axios
+    api
       .get(`${import.meta.env.VITE_API_BASE_URL}/api/proposals/${id}`,
         {
           headers: {

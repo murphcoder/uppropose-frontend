@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import api from "./api/";
 import { Link } from 'react-router-dom';
 
 const ProposalList = () => {
@@ -8,7 +8,7 @@ const ProposalList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
+    api
       .get(`${import.meta.env.VITE_API_BASE_URL}/api/proposals`,
         {
           headers: {

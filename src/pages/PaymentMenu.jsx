@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "./api/";
 
 const PaymentMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,7 @@ const PaymentMenu = () => {
 
   const handleSelect = (option) => {
     if (option === 'Monthly : $15/month') {
-        axios
+        api
           .get(`${import.meta.env.VITE_API_BASE_URL}/monthly_url`,
             {
               headers: {
@@ -31,7 +31,7 @@ const PaymentMenu = () => {
             setError("Failed to load Stripe.")
           });
     } else if (option === 'Yearly : $150/year') {
-        axios
+        api
           .get(`${import.meta.env.VITE_API_BASE_URL}/yearly_url`,
             {
               headers: {

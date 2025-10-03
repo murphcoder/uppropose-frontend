@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "./api/";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -19,7 +19,7 @@ const RegisterPage = () => {
     }
 
     try {
-      const response = await axios.post(
+      const response = await api.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/users`,  // Send to backend for registration
         {
           user: {

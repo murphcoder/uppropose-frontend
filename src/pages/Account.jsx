@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import axios from "axios";
+import api from "./api/";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '/src/AuthContext';
 
@@ -37,7 +37,7 @@ const Account = () => {
 
     try {
       // Send the work experience to the backend
-      const response = await axios.post(
+      const response = await api.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/users/update_current_user`,
         {
           user: {
@@ -68,8 +68,7 @@ const Account = () => {
 
   useEffect(() => {
     // Fetch proposal details by ID
-    axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/api/users/show_current_user`,
+    api.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/show_current_user`,
         {
           headers: {
             "Content-Type": "application/json",

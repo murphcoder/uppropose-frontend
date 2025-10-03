@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import api from './api';
 import { AuthContext } from '/src/AuthContext';
 
 const Logout = () => {
@@ -11,7 +11,7 @@ const Logout = () => {
   useEffect(() => {
     const handleLogout = async () => {
       try {
-        await axios.delete(
+        await api.delete(
           `${import.meta.env.VITE_API_BASE_URL}/api/users/sign_out`,
           {
             headers: {

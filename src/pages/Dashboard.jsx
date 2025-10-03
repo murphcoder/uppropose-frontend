@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from "react";
-import axios from "axios";
+import api from "./api/";
 import { useNavigate } from "react-router-dom";
 import ProposalList from "./ProposalList";
 import { AuthContext } from "/src/AuthContext";
@@ -32,7 +32,7 @@ const Dashboard = () => {
       return;
     }
 
-    axios.post(
+    api.post(
       `${import.meta.env.VITE_API_BASE_URL}/api/proposals`,
       {
         proposal: {job_description: jobDescription, title: title, addresse: addresse},

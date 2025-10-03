@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
+import api from "./api/";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '/src/AuthContext';
 
@@ -29,7 +29,7 @@ const Onboard = () => {
 
     try {
       // Send the work experience to the backend
-      const response = await axios.put(
+      const response = await api.put(
         `${import.meta.env.VITE_API_BASE_URL}/api/users/update_current_user`,
         {
           user: {

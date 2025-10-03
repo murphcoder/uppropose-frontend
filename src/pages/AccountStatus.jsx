@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import axios from "axios";
+import api from "./api/";
 import { AuthContext } from '/src/AuthContext';
 import PaymentMenu from './PaymentMenu';
 
@@ -8,8 +8,7 @@ const AccountStatus = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        axios
-          .get(`${import.meta.env.VITE_API_BASE_URL}/api/users/show_current_user`,
+        api.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/show_current_user`,
             {
               headers: {
                 "Content-Type": "application/json",

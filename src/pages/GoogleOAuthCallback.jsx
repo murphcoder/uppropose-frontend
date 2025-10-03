@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import axios from 'axios';
+import api from './api';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '/src/AuthContext';
 
@@ -12,7 +12,7 @@ const GoogleOAuthCallback = () => {
     const googleAuthCode = urlParams.get("code");
 
     if (googleAuthCode) {
-      axios
+      api
         .post(`${import.meta.env.VITE_API_BASE_URL}/api/users/auth/google_oauth2/callback`, { code: googleAuthCode })
         .then((response) => {
           const { token, user, expirationDate, proposalCount } = response.data;
