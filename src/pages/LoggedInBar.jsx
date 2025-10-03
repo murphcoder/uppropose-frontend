@@ -1,8 +1,16 @@
-import React from 'react';
-import {NavLink} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import AccountStatus from "./AccountStatus";
+import { AuthContext } from '/src/AuthContext';
 
 function LoggedInBar() {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    if (user.work_experience === null) {
+        navigate('/onboard')
+    };
+
     return (
         <div>
             <div className='link-container logged-in'>

@@ -37,7 +37,6 @@ const AccountStatus = () => {
     }
 
     let today = new Date();
-    console.log(proposalCount);
     
     return (
         <div className="status-bar">

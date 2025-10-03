@@ -27,7 +27,11 @@ const GoogleOAuthCallback = () => {
 
             // Small delay to ensure state updates complete before navigation
             setTimeout(() => {
-              navigate("/");
+              if (user.work_experience === null) {
+                navigate("/onboard")
+              } else {
+                navigate("/")
+              }
             }, 0);
           } else {
             console.error("Authentication failed, no token or user data received.");

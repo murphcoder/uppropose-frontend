@@ -96,73 +96,67 @@ const Account = () => {
         <div className="form-group">
             <div className="form-columns">
               <div>
-                <div>
-                  <label>Email</label><br />
-                  <input
-                  type="text"
-                  value={email}
-                  placeholder={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  /><br />
-                </div>
-              </div>
-              
-              <div>
-                <div>
-                  <label>First Name</label><br />
-                  <input
-                    type="text"
-                    value={firstName}
-                    placeholder={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    required
-                  /><br />
-                </div>
-
-                <div>
-                  <label>Last Name</label><br />
-                  <input
-                    type="text"
-                    value={lastName}
-                    placeholder={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    required
-                  /><br />
-                </div>
-              </div>
-
-              <div>
-                <div>
-                    <label>Password</label><br />
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    /><br />
-                </div>
-
-                <div>
-                    <label>Password Confirmation</label><br />
-                    <input
-                        type="password"
-                        value={confirmation}
-                        onChange={(e) => setConfirmation(e.target.value)}
-                    /><br />
-                </div>
-              </div>
-            </div>
-
-            <div>
-                <label>Work Experience</label><br />
-                <textarea
-                    rows="10"
-                    columns="10"
-                    value={workExperience}
-                    onChange={(e) => setWorkExperience(e.target.value)}
-                    placeholder={workExperience}
-                    required
+                <label>Email</label><br />
+                <input
+                type="text"
+                value={email}
+                placeholder={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 /><br />
+              </div>
+            
+              <div>
+                <label>First Name</label><br />
+                <input
+                  type="text"
+                  value={firstName}
+                  placeholder={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                /><br />
+              </div>
+
+              <div>
+                <label>Last Name</label><br />
+                <input
+                  type="text"
+                  value={lastName}
+                  placeholder={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                /><br />
+              </div>
+
+              <div>
+                <label>Password</label><br />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                /><br />
+              </div>
+
+              <div>
+                <label>Password Confirmation</label><br />
+                <input
+                    type="password"
+                    value={confirmation}
+                    onChange={(e) => setConfirmation(e.target.value)}
+                /><br />
+              </div>
+
+              <div>
+                  <label>Work Experience</label><br />
+                  <textarea
+                      rows="10"
+                      columns="10"
+                      value={workExperience}
+                      onChange={(e) => setWorkExperience(e.target.value)}
+                      placeholder={workExperience}
+                      required
+                  /><br />
+              </div>
             </div>
 
           {error && <p className="error">{error}</p>}

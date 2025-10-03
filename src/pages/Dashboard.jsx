@@ -102,7 +102,7 @@ const Dashboard = () => {
               </form>
             </div>)}
           </div>
-          <div>
+          <div className='proposal-group'>
             <h3>Your Proposals</h3>
             <ProposalList />
           </div>

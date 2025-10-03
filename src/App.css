@@ -159,37 +159,53 @@ button.google-btn:hover {
 }
 
 .form-group {
-  display: grid;
   justify-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .form-group div {
-  display: grid;
   justify-items: center;
+}
+
+.form-group label {
+  width: 90%
 }
 
 .form-group textarea {
-  width: 100%
+  width: 90%
 }
 
 .form-group input {
-  width: 100%
+  width: 90%
+}
+
+form.account-form .form-group label {
+  width: 250%
+}
+
+form.account-form .form-group textarea {
+  width: 250%
+}
+
+form.account-form .form-group input {
+  width: 250%
 }
 
 .form-group div {
-  width: 100%
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center
 }
 
 .form-group div textarea {
-  width: 100%
+  width: 90%
 }
 
 .form-group div input {
-  width: 100%
-}
-
-.form-group .form-columns input {
-  width: 80%
+  width: 90%
 }
 
 div.app-container {  
@@ -295,7 +311,6 @@ form.account-form {
 }
 
 .form-columns input {
-  width: 80%;
   height: 30px;
 }
 
@@ -338,11 +353,13 @@ form.account-form {
 
 .form-group .form-columns div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  padding-bottom: 1em;
+  align-items: center
 }
 
 .form-group .form-columns div div {
-  display: grid;
+  flex-direction: row;
 }
 
 .dropdown-container {
@@ -368,6 +385,12 @@ form.account-form {
   justify-content: space-between;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+@media (max-width: 500px) {
+  .dropdown-button {
+    margin-top: 2em;
+  }
 }
 
 .dropdown-button:hover {
@@ -567,4 +590,10 @@ form.account-form {
 
 .terms {
   margin: 3em;
+}
+
+.proposal-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

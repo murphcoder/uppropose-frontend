@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import api from "./api/";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '/src/AuthContext';
 
 const Onboard = () => {
@@ -29,7 +29,7 @@ const Onboard = () => {
 
     try {
       // Send the work experience to the backend
-      const response = await api.put(
+      const response = await api.post(
         `${import.meta.env.VITE_API_BASE_URL}/api/users/update_current_user`,
         {
           user: {
@@ -48,8 +48,6 @@ const Onboard = () => {
 
       if (response.status === 200) {
         setUser(user);
-        setExpirationDate(new Date(expirationDate));
-        setProposals(proposals);
         setSuccess("Work experience saved successfully!");
         // Optionally, redirect to another page (e.g., dashboard) after success
         navigate("/");
@@ -60,35 +58,60 @@ const Onboard = () => {
     }
   };
 
+  useEffect(() => {
+    api.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/show_current_user`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      }
+    )
+    .then((response) => {
+      setUser(response.data.user);
+      setFirstName(user.first_name);
+      setLastName(user.last_name);
+    })
+    .catch((err) => {
+      console.error("Error fetching user:", err);
+      setError("Failed to load user.");
+    });
+  }, []);
+
+  if (user.work_experience != null) {
+      navigate('/')
+  };
+
   return (
     <div>
+      <div className="navbar">
+        <div className='link-container logged-in'>
+          <NavLink className="logout" to="/logout">Logout</NavLink>
+        </div>
+      </div>
       <h3>Onboard</h3>
       <form onSubmit={handleSubmit} className="onboard-form">
         <div className="form-group">
 
-          {user.first_name == null ? (
-            <div>
-              <label>First Name</label><br />
-              <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              /><br />
-            </div>
-          ) : (null)}
+          <div>
+            <label>First Name</label><br />
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            /><br />
+          </div>
 
-          {user.last_name == null ? (
-            <div>
-              <label>Last Name</label><br />
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                required
-              /><br />
-            </div>
-          ) : (null)}
+          <div>
+            <label>Last Name</label><br />
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            /><br />
+          </div>
 
           <label>
             Please write a brief description of your work experience below.
@@ -106,7 +129,7 @@ const Onboard = () => {
           {error && <p className="error">{error}</p>}
           {success && <p className="success">{success}</p>}
 
-          <button type="submit">Save Work Experience</button>
+          <button type="submit" className="submit-button">Save Work Experience</button>
         </div>
       </form>
     </div>
